@@ -37,3 +37,7 @@ def read_file(path: str, type: str = "text") -> typing.Any:
             return stream.read().splitlines()
         else:
             return json.load(fp=stream)
+
+
+def transpose(matrix: typing.List[str]) -> typing.List[str]:
+    return ["".join([row[col_num] for row in matrix]) for col_num in range(len(matrix[0]))]

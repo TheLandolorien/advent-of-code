@@ -1,5 +1,6 @@
 import typing
 from aoc.object_types import Solution
+from aoc.utilities import transpose
 
 # --- Day 4: Ceres Search ---
 # Source: https://adventofcode.com/2024/day/4
@@ -31,7 +32,7 @@ def count_cross_mas_instances(word_search: typing.List[str]) -> int:
 def count_xmas_instances(word_search: typing.List[str]) -> int:
     line_variations = []
     line_variations += word_search[:]
-    line_variations += transpose_word_search(word_search=word_search)
+    line_variations += transpose(matrix=word_search)
     line_variations += generate_diagonals(word_search=word_search)
 
     count = 0
@@ -40,13 +41,6 @@ def count_xmas_instances(word_search: typing.List[str]) -> int:
         count += line.count("SAMX")
 
     return count
-
-
-def transpose_word_search(word_search: typing.List[str]) -> typing.List[str]:
-    transposition = []
-    for i in range(len(word_search)):
-        transposition.append("".join([line[i] for line in word_search]))
-    return transposition
 
 
 def generate_diagonals(word_search: typing.List[str]) -> typing.List[str]:
