@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "aoc"
+version = "0.1.0"
+description = "CLI Tool to run my Advent of Code solutions"
+license = "MIT"
+authors = ["Lando Toothman <25360446+TheLandolorien@users.noreply.github.com>"]
+readme = "README.md"
+packages = [
+  { include = "aoc", "from" = "src" }
+]
+repository = "https://github.com/thelandolorien/advent-of-code"
+keywords = ["Advent of Code"]
+classifiers = [
+    "Topic :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[tool.poetry.dependencies]
+python = "3.11.5"
+requests = "^2.31.0"
+selenium = "^4.7.2"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.4"
+coverage = "^7.6.8"
+pytest-cov = "^6.0.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+
+[tool.black]
+line-length = 100
+
+[tool.pytest.ini_options]
+minversion = "8.3.0"
+pythonpath = "src"
+testpaths = ["tests/unit"]
+addopts = "-vv --import-mode=importlib --strict-markers"
+markers = [
+    "date_arg",
+]
+
+[tool.poetry.scripts]
+aoc = "aoc.cli:run"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/thelandolorien/advent-of-code/issues"
+"Say Thanks!" = "https://www.buymeacoffee.com/thelandolorien"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

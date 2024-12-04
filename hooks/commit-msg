@@ -1,0 +1,26 @@
+#!/bin/sh
+
+COMMIT_FILE=$1
+SUBJECT_LINE=$(head -n1 $COMMIT_FILE)
+SUBJECT_LINE_CONVENTION="^((feat)|(fix)|(refact)|(style)|(docs)|(test)|(chore)): "
+SUBJECT_LINE_LENGTH=${#SUBJECT_LINE}
+
+if ! [[ $SUBJECT_LINE_LENGTH -le 50 ]]; then
+    echo "❌ Commit Message"
+    echo "Max Length - 50 chars"
+    exit 1
+elif ! [[ "$SUBJECT_LINE" =~ $SUBJECT_LINE_CONVENTION ]]; then
+    echo "❌ Commit Message"
+    echo "Expected format - <TYPE>: <SUBJECT>"
+    echo "<TYPE> can be "
+    echo "   feat     (new feature)"
+    echo "   fix      (bug fix)"
+    echo "   refact   (refactoring production code)"
+    echo "   style    (formatting, missing semi colons, etc; no code change)"
+    echo "   docs     (changes to documentation)"
+    echo "   test     (adding or refactoring tests; no production code change)"
+    echo "   chore    (updating grunt tasks etc; no production code change)"
+    exit 1
+else
+    echo "✅ Commit Message"
+fi

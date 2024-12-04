@@ -1,0 +1,19 @@
+#!/bin/sh
+
+formatting_results=$(black --check --line-length 100 . 2>&1 > /dev/null)
+if [[ "$?" == "0" ]]; then
+	echo "✅ Formatting"
+else
+	echo "❌ Formatting"
+	echo "$formatting_results"
+	exit 1
+fi
+
+test_results=$(pytest --cov=src/aoc --cov-fail-under=90 --cov-branch --cov-report term-missing:skip-covered tests/unit)
+if [[ "$?" == "0" ]]; then
+	echo "✅ Unit Tests"
+else
+	echo "❌ Unit Tests"
+	echo "$test_results"
+	exit 1
+fi

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+test_results=$(pytest tests/integration)
+if [[ "$?" == "0" ]]; then
+	echo "✅ Integration Tests"
+else
+	echo "❌ Integration Tests"
+	echo "$test_results"
+	exit 1
+fi
