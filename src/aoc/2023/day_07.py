@@ -82,8 +82,6 @@ def evaluate_hand(deal: str, use_jokers: bool) -> int:
         else:
             if num_wildcards == 3 or num_wildcards == 2:
                 score = Rank.FIVE_OF_A_KIND
-            elif num_wildcards == 1:
-                score = Rank.FOUR_OF_A_KIND
             else:
                 score = Rank.FULL_HOUSE
     return score
