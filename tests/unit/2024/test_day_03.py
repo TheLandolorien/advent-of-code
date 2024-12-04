@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parametrize("example_number,example_solutions", [(1, (161, 48))])
+@pytest.mark.parametrize("example_number,example_solutions", [(1, (161, 161)), (2, (161, 48))])
 def test_solve_calculates_puzzle_answers(
     example_number,
     example_solutions,
