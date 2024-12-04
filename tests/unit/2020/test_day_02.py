@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parametrize("example_number,example_solutions", [(1, (2, None))])
+@pytest.mark.parametrize("example_number,example_solutions", [(1, (2, 1))])
 def test_solve_calculates_puzzle_answers(
     example_number,
     example_solutions,
@@ -13,5 +13,5 @@ def test_solve_calculates_puzzle_answers(
 
     first, second = puzzle_module.solve(puzzle_input=mock_puzzle_input)
 
-    assert first == mock_first, "should count valid password"
-    assert second == mock_second, "should <PART_2_SCENARIO>"
+    assert first == mock_first, "should count valid password by count"
+    assert second == mock_second, "should count valid password by position"
