@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.parametrize("example_number,example_solutions", [(1, (18, None))])
+@pytest.mark.parametrize("example_number,example_solutions", [(1, (18, 9))])
 def test_solve_calculates_puzzle_answers(
     example_number,
     example_solutions,
@@ -14,4 +14,4 @@ def test_solve_calculates_puzzle_answers(
     first, second = puzzle_module.solve(puzzle_input=mock_puzzle_input)
 
     assert first == mock_first, "should find all XMAS instances"
-    assert second == mock_second, "should <PART_2_SCENARIO>"
+    assert second == mock_second, "should find all cross MAS instances"

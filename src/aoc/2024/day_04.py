@@ -5,7 +5,30 @@ from aoc.object_types import Solution
 # Source: https://adventofcode.com/2024/day/4
 
 
-def generate_all_line_variations(word_search: typing.List[str]) -> typing.List[str]:
+def count_cross_mas_instances(word_search: typing.List[str]) -> int:
+    configurations = [
+        "MSMS",
+        "SSMM",
+        "MMSS",
+        "SMSM",
+    ]
+    count = 0
+    length = len(word_search)
+    for i in range(1, length - 1):
+        for j in range(1, length - 1):
+            if word_search[i][j] == "A":
+                corners = (
+                    word_search[i - 1][j - 1]
+                    + word_search[i - 1][j + 1]
+                    + word_search[i + 1][j - 1]
+                    + word_search[i + 1][j + 1]
+                )
+                if corners in configurations:
+                    count += 1
+    return count
+
+
+def count_xmas_instances(word_search: typing.List[str]) -> int:
     line_variations = []
     line_variations += word_search[:]
     line_variations += transpose_word_search(word_search=word_search)
@@ -44,6 +67,6 @@ def generate_diagonals(word_search: typing.List[str]) -> typing.List[str]:
 
 def solve(puzzle_input: typing.List[str]) -> Solution:
     return Solution(
-        first=generate_all_line_variations(word_search=puzzle_input),
-        second=None,
+        first=count_xmas_instances(word_search=puzzle_input),
+        second=count_cross_mas_instances(word_search=puzzle_input),
     )
